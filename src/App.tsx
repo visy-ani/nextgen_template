@@ -6,7 +6,7 @@ import Heart from './assets/images/Heart.svg';
 const App = () => {
   return (
     <div>
-      <h1>React + Typescript + Webpack</h1>
+      <h1>React + Typescript + Webpack - {process.env.NODE_ENV} {process.env.name}</h1>
       <img src={Image} alt="Logos Image" />
       <img src={Heart} alt="Heart Image" />
     </div>

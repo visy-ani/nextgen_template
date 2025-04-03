@@ -3,7 +3,7 @@ import Image from './assets/images/images.png'
 import Heart from './assets/images/Heart.svg'
 
 const App = () => {
-  const name = "React + Typescript + Webpack";
+  const name = 'React + Typescript + Webpack'
   return (
     <div>
       <h1>

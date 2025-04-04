@@ -19,11 +19,11 @@ module.exports = {
         ],
       },
       {
-        test: /\.(css|scss)$/,
+        test: /\.(css|scss)$/i,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.?(:ico|gif|png|jpg|jpeg)$/i,
+        test: /\.(ico|gif|png|jpg|jpeg)$/i,
         type: 'asset/resource',
       },
       {
@@ -34,16 +34,31 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, '..', './build'),
-    filename: 'bundle.js',
+    filename: '[name].[contenthash].js',
+    chunkFilename: '[name].[contenthash].js', 
+    clean: true, 
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 20000, 
+      maxSize: 40000, 
+      automaticNameDelimiter: '-',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '..', './public/index.html'),
     }),
     new CopyPlugin({
-        patterns: [
-          { from: "public", to: "build"}, 
-        ],
-      }),      
+      patterns: [{ from: 'public', to: 'build' }],
+    }),
   ],
 }

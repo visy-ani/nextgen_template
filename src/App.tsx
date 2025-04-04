@@ -1,9 +1,11 @@
 import './styles.css'
+// import test from './styles.module.css';
 import Image from './assets/images/images.png'
 import Heart from './assets/images/Heart.svg'
 
 const App = () => {
   const name = 'React + Typescript + Webpack'
+  // console.log(test);
   return (
     <div>
       <h1>

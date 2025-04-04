@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
@@ -8,6 +9,10 @@ module.exports = {
         new webpack.DefinePlugin({
             'process.env.name': JSON.stringify('Codevolution'),
         }),
+        new MiniCssExtractPlugin({
+            filename: '[name].[contenthash].css',
+            chunkFilename: '[id].[contenthash].css',
+        }),
         new BundleAnalyzerPlugin(),
     ]
-}
+};

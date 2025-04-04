@@ -1,6 +1,9 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+
+const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: path.resolve(__dirname, '..', './src/index.tsx'),
@@ -12,15 +15,24 @@ module.exports = {
       {
         test: /\.(ts|js)x?$/,
         exclude: /node_modules/,
+        use: ['babel-loader'],
+      },
+      {
+        test: /\.module\.css$/,
         use: [
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
           {
-            loader: 'babel-loader',
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
           },
         ],
       },
       {
         test: /\.(css|scss)$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        exclude: /\.module\.css$/,
+        use: [isProd? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(ico|gif|png|jpg|jpeg)$/i,
@@ -60,5 +72,6 @@ module.exports = {
     new CopyPlugin({
       patterns: [{ from: 'public', to: 'build' }],
     }),
+    new MiniCssExtractPlugin(),
   ],
 }

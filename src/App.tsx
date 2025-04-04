@@ -1,5 +1,5 @@
 import './styles.css';
-import SEO from './SEO';
+import SEO from './Meta';
 
 
 const App = () => {

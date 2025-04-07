@@ -1,17 +1,21 @@
 #!/usr/bin/env node
 
-const fs = require("fs-extra");
-const path = require("path");
-const { execSync } = require("child_process");
-const chalk = require("chalk");
-const ora = require("ora");
-const inquirer = require("inquirer");
+import fs from "fs-extra";
+import path from "path";
+import { execSync } from "child_process";
+import chalk from "chalk";
+import ora from "ora";
+import inquirer from "inquirer";
+import { fileURLToPath } from "url";
+
+// For __dirname in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 async function createProject() {
   console.log(chalk.cyanBright("🚀 Create NextGen App"));
   console.log(chalk.gray("Made with ❤️  by Anish\n"));
 
-  // Ask for project setup options
   const answers = await inquirer.prompt([
     {
       name: "projectName",

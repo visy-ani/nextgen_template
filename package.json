@@ -1,7 +1,8 @@
 {
   "name": "create-nextgen",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "A CLI tool to scaffold projects using the NextGen template.",
+  "type":"module",
   "bin": {
     "create-nextgen": "./index.js"
   },

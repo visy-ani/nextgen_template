@@ -1,18 +1,32 @@
 {
   "name": "create-nextgen",
   "version": "1.0.1",
-  "description": "CLI to scaffold projects using the NextGen template",
+  "description": "A CLI tool to scaffold projects using the NextGen template.",
   "bin": {
     "create-nextgen": "./index.js"
   },
-  "dependencies": {
-    "fs-extra": "^11.1.1"
-  },
+  "author": "visy-ani",
+  "license": "MIT",
   "keywords": [
     "cli",
     "template",
     "scaffold",
-    "nextgen"
+    "nextgen",
+    "starter",
+    "project-generator"
   ],
-  "license": "MIT"
+  "homepage": "https://github.com/visy-ani/create-nextgen#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/visy-ani/create-nextgen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/visy-ani/create-nextgen/issues"
+  },
+  "dependencies": {
+    "fs-extra": "^11.1.1"
+  },
+  "engines": {
+    "node": ">=14"
+  }
 }

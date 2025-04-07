@@ -25,7 +25,7 @@
   },
   "files": [
     "index.js",
-    "templates"
+    "template"
   ],
   "dependencies": {
     "fs-extra": "^11.1.1"

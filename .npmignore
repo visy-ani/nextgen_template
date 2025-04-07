@@ -1,3 +1,10 @@
 node_modules
+test
+*.log
+*.tgz
+dist
 .DS_Store
-.git
+*.swp
+.env
+.idea
+.vscode

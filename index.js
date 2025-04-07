@@ -8,7 +8,7 @@ async function createProject() {
   const projectName = process.argv[2];
 
   if (!projectName) {
-    console.error("❌ Please provide a project name. Example: npx create-nextgen my-app");
+    console.error("❌ Please provide a project name. Example: npm create nextgen my-app");
     process.exit(1);
   }
 
@@ -41,6 +41,7 @@ async function createProject() {
 
   console.log("📦 Installing dependencies...");
   execSync("pnpm install", { cwd: targetPath, stdio: "inherit" });
+  execSync("pnpm approve-builds", { cwd: targetPath, stdio: "inherit" });
 
   console.log("✅ Done!");
   console.log(`\nNext steps:\n  cd ${projectName}\n  pnpm start`);

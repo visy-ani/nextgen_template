@@ -23,6 +23,7 @@
   "bugs": {
     "url": "https://github.com/visy-ani/create-nextgen/issues"
   },
+  "files": ["index.js", "templates"],
   "dependencies": {
     "fs-extra": "^11.1.1"
   },

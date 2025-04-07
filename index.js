@@ -18,6 +18,27 @@ async function createProject() {
   console.log("✨ Copying template...");
   await fs.copy(templatePath, targetPath);
 
+  const emptyDirs = [
+    "src/assets/fonts",
+    "src/assets/icons",
+    "src/assets/images",
+    "src/assets/videos",
+    "src/components",
+    "src/hooks",
+    "src/layouts",
+    "src/pages",
+    "src/routes",
+    "src/styles",
+    "src/store",
+    "src/utils"
+  ];
+  for (const dir of emptyDirs) {
+    const fullPath = path.join(targetPath, dir);
+    if (!fs.existsSync(fullPath)) {
+      fs.mkdirSync(fullPath, { recursive: true });
+    }
+  }
+
   console.log("📦 Installing dependencies...");
   execSync("pnpm install", { cwd: targetPath, stdio: "inherit" });
 

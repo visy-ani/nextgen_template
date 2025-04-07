@@ -8,21 +8,32 @@ import ora from "ora";
 import inquirer from "inquirer";
 import { fileURLToPath } from "url";
 
-// For __dirname in ESM
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 async function createProject() {
   console.log(chalk.cyanBright("🚀 Create NextGen App"));
-  console.log(chalk.gray("Made with ❤️  by Anish\n"));
+  console.log(chalk.gray("⚡️ If it makes you faster, it makes you better. 🛠️\n"));
+
+  const cliArg = process.argv[2];
+  let projectName =
+    cliArg && (cliArg === "." || cliArg === "./")
+      ? path.basename(process.cwd())
+      : cliArg;
+
+  if (!projectName) {
+    const nameAnswer = await inquirer.prompt([
+      {
+        name: "projectName",
+        type: "input",
+        message: "📁 Project name:",
+        validate: input => input.trim() !== "" || "Project name cannot be empty",
+      }
+    ]);
+    projectName = nameAnswer.projectName;
+  }
 
   const answers = await inquirer.prompt([
-    {
-      name: "projectName",
-      type: "input",
-      message: "📁 Project name:",
-      validate: input => input.trim() !== "" || "Project name cannot be empty",
-    },
     {
       name: "packageManager",
       type: "list",
@@ -38,9 +49,12 @@ async function createProject() {
     },
   ]);
 
-  const { projectName, packageManager, installDeps } = answers;
+  const { packageManager, installDeps } = answers;
 
-  const targetPath = path.join(process.cwd(), projectName);
+  const isCurrentDir = cliArg === "." || cliArg === "./";
+  const targetPath = isCurrentDir
+    ? process.cwd()
+    : path.join(process.cwd(), projectName);
   const templatePath = path.join(__dirname, "template");
 
   const copySpinner = ora("✨ Copying template...").start();
@@ -91,10 +105,8 @@ async function createProject() {
 
   console.log(chalk.greenBright("\n✅ Project setup complete!\n"));
   console.log(chalk.cyanBright("Next steps:"));
-  console.log(chalk.gray(`  cd ${projectName}`));
-  if (!installDeps) {
-    console.log(chalk.gray(`  ${packageManager} install`));
-  }
+  if (!isCurrentDir) console.log(chalk.gray(`  cd ${projectName}`));
+  if (!installDeps) console.log(chalk.gray(`  ${packageManager} install`));
   console.log(chalk.gray(`  ${packageManager} start\n`));
 }
 

@@ -1,10 +1,10 @@
 {
   "name": "create-nextgen",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A CLI tool to scaffold projects using the NextGen template.",
   "type":"module",
   "bin": {
-    "create-nextgen": "./index.js"
+    "create-nextgen": "./index.mjs"
   },
   "author": "visy-ani",
   "license": "MIT",
